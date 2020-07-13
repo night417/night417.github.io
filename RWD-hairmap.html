@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hairmap</title>
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <style>
+        :root {
+            --darkpink: #c1576e;
+            --lightpink: #f4a1b8;
+        }
+
+        * {
+            font-family: 微軟正黑體;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        .list-unstyled {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .margin-top-20 {
+            margin-top: 20px;
+        }
+
+        .filter-brightness-50 {
+            filter: brightness(50%);
+        }
+
+        header .logo {
+            height: 54px;
+        }
+
+        header a {
+            text-decoration: none;
+            color: gray;
+            line-height: 54px;
+            font-weight: bold;
+            font-size: 20px;
+
+        }
+
+        header li a {
+            display: block;
+            flex: 1 0 0;
+            margin: 0;
+            padding: 0 15px;
+        }
+
+        header .main-menu li a:hover {
+            color: white;
+            background: gray;
+        }
+
+        header .login {
+            height: 54px;
+        }
+
+        header .login img {
+            height: 54px;
+            object-fit: cover;
+        }
+
+        @media screen and (max-width: 768px) {
+            header li a {
+                display: none;
+            }
+        }
+
+        .cover {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .cover>img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cover .cover-top {
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        .cover .cover-top img {
+            width: 16%;
+            opacity: 1;
+        }
+
+        .cover .cover-top h1 {
+            margin-top: 0;
+        }
+
+        .cover .cover-top .find {
+            display: inline-block;
+            border: 2px solid var(--lightpink);
+            height: 48px;
+            position: relative;
+        }
+
+        .cover .cover-top .find select {
+            height: 100%;
+            width: 150px;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            border-right: 2px solid pink;
+        }
+
+        .cover .cover-top .find select option {
+            background: var(--lightpink);
+        }
+
+        .cover .cover-top .find input {
+            height: 100%;
+            width: 400px;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            padding-left: 10px;
+            border: none;
+            padding: 0;
+            font-size: 18px;
+        }
+
+        .cover .cover-top .find .btn_w {
+            height: 90%;
+            width: 100px;
+            padding: 0;
+            border: none;
+            position: absolute;
+            right: 0;
+            background-color: var(--darkpink);
+            margin: 2px;
+            color: white;
+            font-family: 微軟正黑體;
+        }
+
+        .cover .cover-top .btn_m {
+            display: none;
+        }
+
+        .cover .cover-top .find button:hover {
+            cursor: pointer;
+        }
+
+        .cover .card-list {
+            width: 100%;
+            height: 33%;
+            position: absolute;
+            padding: 10px 0;
+            left: 0;
+            bottom: 0;
+            background-image: url(images/pics/bg_icon.png);
+            justify-content: space-evenly;
+        }
+
+        .cover .card-list .card img {
+            width: 100px;
+
+        }
+
+        @media screen and (max-width: 768px) {
+            .cover {
+                height: 850px;
+            }
+
+            .cover-top {
+                height: 350px;
+            }
+
+            .cover .cover-top .find {
+                flex-wrap: wrap;
+                width: 90%;
+            }
+
+            .cover .cover-top .find select {
+                width: 39%;
+            }
+
+            .cover .cover-top .find input {
+                width: 60%;
+            }
+
+            .cover .cover-top .find .btn_w {
+                display: none;
+            }
+
+            .cover .cover-top .btn_m {
+                display: block;
+                margin: 0 auto;
+                width: 90%;
+                border: none;
+                background-color: var(--darkpink);
+                color: white;
+                font-family: 微軟正黑體;
+                margin-top: 5px;
+                padding: 10px;
+
+            }
+
+            .cover .cover-top .btn_m:hover {
+                cursor: pointer;
+            }
+
+            .cover .cover-top .btn_m img {
+                height: 16px;
+                width: 16px;
+            }
+
+            .cover .card-list {
+                height: 500px;
+                flex-direction: column;
+                padding: 0;
+            }
+        }
+
+        article {
+            text-align: center;
+        }
+
+        article .title {
+            margin-bottom: 3px;
+            padding: 0;
+        }
+
+        .line {
+            border: 2px solid black;
+            border-radius: 2px;
+            width: 28px;
+            height: 1px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .content1 {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .content1 .card-list {
+            display: flex;
+            margin: 0 50px;
+            margin-top: 10px;
+        }
+
+        .content1 .card-list .wrapper {
+            display: flex;
+        }
+
+        .content1 .card-list .card {
+            flex: 1 0 0;
+            height: 280px;
+            padding: 10px 15px 0px 15px;
+            position: relative;
+        }
+
+        .content1 .card-list .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content1 .card-list .card span {
+            position: absolute;
+            right: 0;
+            bottom: 20px;
+            width: 120px;
+            line-height: 30px;
+            background: rgba(255, 255, 255, 70%);
+            border: 1px solid var(--darkpink);
+            color: var(--darkpink);
+        }
+
+        .content1 button {
+            background: var(--darkpink);
+            color: white;
+            font-weight: lighter;
+            font-size: 14px;
+            padding: 3px 10px;
+            border: none;
+            margin-top: 10px;
+            position: absolute;
+            right: 65px;
+        }
+
+        .content2 {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .content2 .card-list {
+            display: flex;
+            margin: 0 50px;
+            margin-top: 10px;
+            padding: 0 3px;
+        }
+
+        .content2 .card-list .card {
+            flex: 1 0 0;
+            height: 150px;
+            margin: 10px 12px 0px 12px;
+            position: relative;
+        }
+
+        .content2 .card-list .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(70%);
+        }
+
+        .content2 .card-list .card span {
+            width: 100%;
+            padding: 0 5px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            color: white;
+            text-shadow: 1px 1px black;
+        }
+
+        .content2 button {
+            background: var(--darkpink);
+            color: white;
+            font-weight: lighter;
+            font-size: 14px;
+            padding: 3px 10px;
+            border: none;
+            margin-top: 10px;
+            position: absolute;
+            right: 65px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .content1 .card-list {
+                flex-direction: column;
+                margin: 0 auto;
+            }
+            .content1 button{
+                right: 15px;
+            }
+            .content2 .card-list {
+                flex-direction: column;
+                margin: 0 auto;
+            }
+            .content2 .card-list .card{
+                height: 300px;
+            }
+            .content2 button{
+                right: 15px;
+            }
+        }
+
+        footer {
+            background: #dbdbdb;
+            height: 570px;
+        }
+
+        footer .top {
+            height: 190px;
+            display: flex;
+            justify-content: center;
+        }
+
+        footer .top>img {
+            margin: 0;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        footer .top .text .title {
+            width: 168px;
+        }
+
+        footer .top .text h2 {
+            margin-top: 30px;
+            margin-bottom: 3px;
+            padding: 0;
+        }
+
+        footer .top .text .app {
+            display: flex;
+            margin-top: 25px;
+        }
+
+        footer .top .text .app .ios {
+            background: url(images/pics/btn_app_ios_h.png) no-repeat;
+            background-size: contain;
+        }
+
+        footer .top .text .app .android {
+            background: url(images/pics/btn_app_android_h.png) no-repeat;
+            background-size: contain;
+        }
+
+        footer .top .text .app img {
+            object-fit: cover;
+        }
+
+        footer .top .text .app img:hover {
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        footer .top .text p {
+            color: var(--darkpink);
+            font-size: 12px;
+        }
+
+        footer .medium {
+            height: 190px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            ;
+        }
+
+        footer .medium img {
+            width: 100%;
+            object-fit: cover;
+            filter: blur(3px) brightness(50%);
+        }
+
+        footer .medium .wrapper {
+            position: absolute;
+            color: white;
+        }
+
+        footer .medium .number {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            column-count: 2;
+            column-gap: 100px;
+            column-rule: 2px dotted white;
+        }
+
+        footer .medium p {
+            margin: 0px;
+        }
+
+        footer .medium .number .big {
+            font-size: 50px;
+            margin: 8px auto;
+        }
+
+        footer .medium .text .title h2 {
+            margin-top: 30px;
+            margin-bottom: 3px;
+            padding: 0;
+        }
+
+        footer .medium .text .title>.line {
+            border-color: white;
+        }
+
+        footer .medium .text button {
+            width: 150px;
+            padding: 8px 20px;
+            margin: 30px 10px 0px 10px;
+            border: none;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 60%);
+        }
+
+        footer .medium .text button span {
+            font-size: 14px;
+        }
+
+        footer .bottom {
+            height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: gray;
+            font-size: 14px;
+        }
+
+        footer .bottom .contact {
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        footer .bottom .contact .text>p {
+            margin: 0;
+            width: 400px;
+        }
+
+        footer .bottom .contact .link-list {
+            column-count: 2;
+        }
+
+        footer .bottom .contact .link-list .link>img {
+            height: 14px;
+        }
+
+        footer .bottom .contact .join {
+            position: relative;
+            background: url(images/pics/btn_join_h.png) no-repeat;
+        }
+
+        footer .bottom .contact .join:hover {
+            cursor: pointer;
+        }
+
+        footer .bottom .contact .join:hover img {
+            opacity: 0;
+        }
+
+        footer .bottom .contact .join>span {
+            position: absolute;
+            bottom: 50%;
+            margin-bottom: -7px;
+            right: 18px;
+            color: var(--darkpink);
+        }
+
+        footer .bottom .contact .join:hover span {
+            color: var(--lightpink);
+        }
+
+        footer .bottom .copyright {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid gray;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            footer .top .text .app {
+                flex-direction: column;
+            }
+
+            footer .top .text .app .ios,
+            .android {
+                width: 135px;
+            }
+
+            footer .top .text p {
+                display: none;
+            }
+
+            footer .medium {
+                height: 380px;
+            }
+
+            footer .medium .number {
+                column-count: 1;
+            }
+
+            footer .medium .number p {
+                margin: 10px auto;
+            }
+
+            footer .medium .text {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            footer .medium .text .title h2 {
+                margin-top: 15px;
+            }
+
+            footer .medium .text .btn button {
+                margin: 10px;
+            }
+
+            footer .bottom .contact {
+                flex-direction: column;
+                width: 90%;
+                margin: 30px auto;
+            }
+
+            footer .bottom .contact .text>p {
+                width: 100%;
+            }
+
+            footer .bottom .contact .link-list {
+                width: 80%;
+                margin: 10px auto;
+            }
+
+            footer .bottom .contact .join>span {
+                left: 45px;
+            }
+
+            footer .bottom .copyright {
+                flex-direction: column;
+            }
+
+            footer .bottom .copyright p {
+                margin: 5px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container margin-top-20">
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex">
+                <img class="logo" src="images/pics/logo.png" alt="">
+                <ul class="d-flex list-unstyled main-menu">
+                    <li><a href="">找髮型</a></li>
+                    <li><a href="">找設計師</a></li>
+                    <li><a href="">美髮誌</a></li>
+                </ul>
+            </div>
+            <div class="login">
+                <ul class="d-flex list-unstyled ">
+                    <li><a href="">註冊</a></li>
+                    <li><a href="">登入</a></li>
+                    <li>
+                        <img class="setting" src="images/pics/setting.png" alt="">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <article class="margin-top-20">
+        <div class="container cover">
+            <img class="cover-img filter-brightness-50" src="images/images/long-hair.jpg" alt="">
+            <div class="cover-top">
+                <div>
+                    <img class="margin-top-20 " src="images/images/logo_icon_g.svg" alt="">
+                    <h1>煩惱髮型嗎</h1>
+                    <p>給你最多髮型靈感及在地設計師</p>
+                </div>
+                <form class="find d-flex" action="">
+
+                    <select name="" id="" title="找地區">
+                        <option value="-1">找地區</option>
+                        <option value="0">台北市</option>
+                    </select>
+                    <input type="text" placeholder="搜尋髮型主題">
+                    <button class="btn_w">
+                        <img src="images/pics/icon_searchbar_search.png" alt="">
+                        <span>去逛逛</span>
+                    </button>
+                </form>
+                <button class="btn_m">
+                    <img src="images/pics/icon_searchbar_search.png" alt="">
+                    <span>去逛逛</span>
+                </button>
+            </div>
+            <div class="card-list d-flex">
+                <div class="card">
+                    <img src="images/pics/icon_search.svg" alt="">
+                    <div>在地設計師作品<br>輕鬆找</div>
+                </div>
+                <div class="card">
+                    <img src="images/pics/icon_fashion.svg" alt="">
+                    <div>流行髮型<br>一手掌握</div>
+                </div>
+                <div class="card">
+                    <img src="images/pics/icon_book.svg" alt="">
+                    <div>即時溝通預約</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container content1">
+            <h2 class="title">熱門主題</h2>
+            <div class="line"></div>
+            <div class="card-list">
+                <div class="wrapper">
+                    <div class="card">
+                        <img src="images/images/141965.jpg" alt="">
+                        <span>男士髮型</span>
+                    </div>
+                    <div class="card">
+                        <img src="images/images/9743_2.jpg" alt="">
+                        <span>長瀏海</span>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="card">
+                        <img src="images/images/22736_8.jpg" alt="">
+                        <span>女生髮型</span>
+                    </div>
+                    <div class="card">
+                        <img src="images/images/138974.jpg" alt="">
+                        <span>霧面紫</span>
+                    </div>
+                </div>
+            </div>
+            <button><span>more</span></button>
+        </div>
+        <div class="container content2">
+            <h2 class="title">趨勢話題</h2>
+            <div class="line"></div>
+            <div class="card-list">
+                <div class="card">
+                    <img src="images/images/11155.jpg" alt="">
+                    <span>這邊填入文字這邊填入文字這邊填入文字</span>
+                </div>
+                <div class="card">
+                    <img src="images/images/long-hair.jpg" alt="">
+                    <span>這邊填入文字這邊填入文字</span>
+                </div>
+                <div class="card">
+                    <img src="images/images/9344.jpg" alt="">
+                    <span>這邊填入文字這邊填入文字這邊填入文字</span>
+                </div>
+            </div>
+            <button><span>more</span></button>
+        </div>
+    </article>
+    <footer class="container">
+        <div class="top">
+            <img src="images/images/phones.png" alt="">
+            <div class="text">
+                <div class="title">
+                    <h2>快速找到好髮型</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="app">
+                    <div class="ios">
+                        <img src="images/pics/btn_app_ios.png" alt="">
+                    </div>
+                    <div class="android">
+                        <img src="images/pics/btn_app_android.png" alt="">
+                    </div>
+                </div>
+                <p>下載並註冊後就可以開始發表作品囉！</p>
+            </div>
+
+        </div>
+        <div class="medium">
+            <img src="images/images/128141.jpg" alt="">
+            <div class="wrapper">
+                <div class="number">
+                    <p>已有</p>
+                    <p class="big">635</p>
+                    <p>位設計師</p>
+                    <p>發表</p>
+                    <p class="big">6421</p>
+                    <p>張髮型造型</p>
+                </div>
+                <div class="text d-flex">
+                    <div class="title">
+                        <h2>優秀設計師募集中</h2>
+                        <div class="line"></div>
+                    </div>
+                    <div class="btn">
+                        <button><span>了解更多</span></button>
+                        <button><span>立即免費註冊</span></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="contact d-flex">
+                <div class="text d-flex">
+                    <img src="images/images/logo_icon_g.svg" style="height: 40px;" alt="">
+                    <p>HairMap美髮地圖團隊致力於打造出最貼心實用的美髮資訊交流社群，讓美髮時光成為每個人生命中的美好時刻</p>
+                </div>
+                <div class="link-list">
+                    <div class="link">
+                        <img src="images/images/email.svg" alt="">
+                        <span>聯絡我們</span>
+                    </div>
+                    <div class="link">
+                        <img src="images/images/facebook_g.svg" alt="">
+                        <span>粉絲專頁</span>
+                    </div>
+                    <div class="link">
+                        <img src="images/images/ios.svg" alt="">
+                        <span>iOS</span>
+                    </div>
+                    <div class="link">
+                        <img src="images/images/android.svg" alt="">
+                        <span>Android</span>
+                    </div>
+                </div>
+                <div class="join">
+                    <img src="images/pics/btn_join.png" alt="">
+                    <span>設計師加入</span>
+                </div>
+
+            </div>
+            <div class="copyright d-flex">
+                <div>
+                    <p>Hairdodo inc. &copy; 2016. All Rights Reserved&nbsp;</p>
+                </div>
+                <div>
+                    <p> 使用者條款與隱私權政策</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
