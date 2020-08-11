@@ -1,0 +1,10 @@
+@media screen and (max-width: 980px) {
+    .tiles article {
+      width: calc(50% - 2.5rem);
+    }
+    .tiles article a > h2 {
+      margin: calc(50% - 1.25rem) auto 1rem auto;
+
+    }
+  }
+  

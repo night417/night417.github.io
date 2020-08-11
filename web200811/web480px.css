@@ -1,0 +1,41 @@
+@media screen and (max-width:480px){
+    h1{
+        font-size: 2rem;
+    }
+    #main .inner header p {
+        line-height: 1.75rem;
+    }
+    .tiles {
+      margin: 0;
+    }
+    .tiles article {
+      width: 100%;
+      margin: 1.25rem 0 0 0;
+    }
+    footer{
+        padding: 3rem 0 3rem 0;
+    
+    }
+    footer .inner section form > div {
+      margin-left: 0;
+    }
+    
+    footer .inner section form > div > div {
+      width: 100%;
+      padding: 1.5rem 0 0 0;
+    }
+    footer .inner section form > button {
+      width: 100%;
+    }
+    footer .copyright{
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+    footer .copyright li {
+      border: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+    
+}
+
