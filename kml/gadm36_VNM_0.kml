@@ -6,7 +6,7 @@
 </Schema>
 <Folder><name>gadm36_VNM_0</name>
   <Placemark>
-	<Style><LineStyle><color>ff00ffff</color><colorMode>normal</colorMode></LineStyle><PolyStyle><fill>1</fill> <outline>0</outline>   </PolyStyle></Style>
+	<Style><LineStyle><color>ff00ffff</color><colorMode>normal</colorMode></LineStyle><PolyStyle><color>ff00ffff</color></PolyStyle></Style>
 	<ExtendedData><SchemaData schemaUrl="#gadm36_VNM_0">
 		<SimpleData name="NAME_0">Vietnam</SimpleData>
 	</SchemaData></ExtendedData>
